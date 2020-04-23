@@ -1,4 +1,4 @@
-# clean txt
+# clean txt 
 
 
 # lower case
@@ -34,7 +34,6 @@ for i in sep:
     if i not in stop_words:
         final.append(i)
 
-print(final)
 
 #adding emotions
 
@@ -51,4 +50,4 @@ with open('emotions.txt','r') as file:
             emotion_list.append(emotion)
 
 print(emotion_list)
-c= Counter(emotion_list)
+

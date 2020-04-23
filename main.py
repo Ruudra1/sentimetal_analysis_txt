@@ -2,7 +2,7 @@
 
 
 # lower case
-
+from colections import Counter
 import string
 text = open('read.txt',encoding='utf-8').read()
 lower_case = text.lower()
@@ -14,7 +14,6 @@ clean_txt = lower_case.translate(str.maketrans('','',string.punctuation))
 #seperation
 
 sep = clean_txt.split()
-print(sep)
 
 #removing meaningless words
 
@@ -24,7 +23,7 @@ stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you"
               "those", "am", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "having", "do",
               "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", "because", "as", "until", "while",
               "of", "at", "by", "for", "with", "about", "against", "between", "into", "through", "during", "before",
-              "after", "above", "below", "to", "from", "up", "down", "in", "out", "on", "off", "over", "under", "again",
+              "after", "above", "below", "to", "from", "up", "in", "out", "on", "off", "over", "under", "again",
               "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each",
               "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than",
               "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"]
@@ -36,3 +35,20 @@ for i in sep:
         final.append(i)
 
 print(final)
+
+#adding emotions
+
+emotion_list= [ ]
+with open('emotions.txt','r') as file:
+
+    for i in file:
+        clear= i.replace('\n','').replace(',','').replace("'",'').strip()
+        word , emotion = clear.split(':')
+        #print( "Word:" +word + " " + "Emotion:" +emotion)
+
+
+        if word in final:
+            emotion_list.append(emotion)
+
+print(emotion_list)
+c= Counter(emotion_list)

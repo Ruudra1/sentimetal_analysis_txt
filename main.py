@@ -1,21 +1,20 @@
-# clean txt 
 
-
-# lower case
-from colections import Counter
+from collections import Counter
 import string
+import matplotlib.pyplot as plt
+
+
 text = open('read.txt',encoding='utf-8').read()
 lower_case = text.lower()
 
-# removing punctuations
+
 
 clean_txt = lower_case.translate(str.maketrans('','',string.punctuation))
 
-#seperation
 
 sep = clean_txt.split()
 
-#removing meaningless words
+
 
 stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", "yourself",
               "yourselves", "he", "him", "his", "himself", "she", "her", "hers", "herself", "it", "its", "itself",
@@ -35,7 +34,7 @@ for i in sep:
         final.append(i)
 
 
-#adding emotions
+#now emotions
 
 emotion_list= [ ]
 with open('emotions.txt','r') as file:
@@ -43,11 +42,18 @@ with open('emotions.txt','r') as file:
     for i in file:
         clear= i.replace('\n','').replace(',','').replace("'",'').strip()
         word , emotion = clear.split(':')
-        #print( "Word:" +word + " " + "Emotion:" +emotion)
+        
 
 
         if word in final:
             emotion_list.append(emotion)
 
-print(emotion_list)
 
+
+print(emotion_list)
+w= Counter(emotion_list)
+print(w)
+
+
+plt.pie(w.values(),labels=w.keys(),autopct='%1.1f%%')
+plt.show()

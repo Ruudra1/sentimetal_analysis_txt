@@ -3,6 +3,11 @@ from collections import Counter
 import string
 import matplotlib.pyplot as plt
 
+start=input("Enter the text to analyse\n")
+
+save_file= open('read.txt','w')
+save_file.write(start)
+save_file.close()
 
 text = open('read.txt',encoding='utf-8').read()
 lower_case = text.lower()
@@ -13,6 +18,7 @@ clean_txt = lower_case.translate(str.maketrans('','',string.punctuation))
 
 
 sep = clean_txt.split()
+
 
 
 
@@ -50,10 +56,14 @@ with open('emotions.txt','r') as file:
 
 
 
-print(emotion_list)
+print("\nThe Dominant Emotions in the text are\n")
+#print(emotion_list)
+
 w= Counter(emotion_list)
 print(w)
 
 
 plt.pie(w.values(),labels=w.keys(),autopct='%1.1f%%')
 plt.show()
+
+

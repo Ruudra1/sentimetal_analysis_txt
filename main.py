@@ -31,7 +31,7 @@ stop_words = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you"
               "after", "above", "below", "to", "from", "up", "in", "out", "on", "off", "over", "under", "again",
               "further", "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each",
               "few", "more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", "same", "so", "than",
-              "too", "very", "s", "t", "can", "will", "just", "don", "should", "now"]
+              "too", "very", "s", "t", "can", "will", "just", "don", "should", "now",".........","."]
 
 final = []
 
@@ -56,14 +56,20 @@ with open('emotions.txt','r') as file:
 
 
 
-print("\nThe Dominant Emotions in the text are\n")
+
 #print(emotion_list)
 
-w= Counter(emotion_list)
-print(w)
+if emotion_list == []:
+    print("No Such Dominant Emotions found , Its Neutral\n")
+else:
+    print("\nThe Dominant Emotions in the text are\n")
+    w= Counter(emotion_list)
+    print(w)
+    plt.pie(w.values(),labels=w.keys(),autopct='%1.1f%%')
+    plt.show()
 
 
-plt.pie(w.values(),labels=w.keys(),autopct='%1.1f%%')
-plt.show()
+
+
 
 
